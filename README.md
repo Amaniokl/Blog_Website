@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a11ad5f0-14d6-45dc-a5f9-77670134e53f)# Blog App
+## Blog App
 
 ## Overview
 Welcome to the Blog App! This app allows users to create, view, and interact with blog posts. It features a modern, user-friendly interface with a clean design. 
@@ -14,18 +14,22 @@ Welcome to the Blog App! This app allows users to create, view, and interact wit
 ![image](https://github.com/user-attachments/assets/138611f8-554d-4c3f-918d-5e185928204d)
 
 
+---
 ## Login Page
 ![image](https://github.com/user-attachments/assets/d6b4d651-44e5-4778-a12a-2789ebcc98e5)
 
 
+---
 ## Home Page
 ![image](https://github.com/user-attachments/assets/e5160981-f087-4b75-9324-65d8fec3868c)
 
 
+---
 ## Blog Page
 ![image](https://github.com/user-attachments/assets/223c1d40-f951-4477-9aed-157b482023c3)
 
 
+---
 ## Create Post
 ![image](https://github.com/user-attachments/assets/ba41cdcb-11df-4d19-9ce2-605688666dd3)
 
