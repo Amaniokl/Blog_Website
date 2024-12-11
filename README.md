@@ -37,11 +37,11 @@ Welcome to the Blog App! This app allows users to create, view, and interact wit
 ---
 
 ## Tech Stack
-- **Frontend**: HTML, CSS, JavaScript (for interactivity)
-- **Backend**: Node.js / Express (or whatever backend you're using)
-- **Database**: MongoDB / MySQL (based on your app's design)
-- **Authentication**: JWT / Passport.js
-- **Styling**: CSS (or SASS for more advanced styles)
+- **Frontend**: HTML, CSS, JavaScript, React
+- **Backend**: Node.js / Express 
+- **Database**: MongoDB 
+- **Authentication**: JWT
+- **Styling**: CSS 
   
 
 # Getting Started with Create React App
