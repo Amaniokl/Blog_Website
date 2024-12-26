@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
@@ -12,7 +14,7 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 
 const salt = bcrypt.genSaltSync(10);
-const secret = 'asdfe45we45w345wegw345werjktjwertkj';
+const secret = process.env.JWT_SECRET;
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
@@ -21,7 +23,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose.set('strictQuery', false); // or true, depending on your preference
 
-mongoose.connect('mongodb+srv://amanoutlook2003:aman@cluster0.gijps.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -49,6 +51,9 @@ app.post('/register', async (req,res) => {
 app.post('/login', async (req,res) => {
   const {username,password} = req.body;
   const userDoc = await User.findOne({username});
+  if (!userDoc) {
+    return res.status(400).json('User not found'); // Return an error if user is not found
+  }
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
     // logged in
@@ -170,5 +175,54 @@ app.get('/post/:id', async (req, res) => {
   res.json(postDoc);
 })
 
-app.listen(4000);
-//
+app.delete('/post/:id', async (req, res) => {
+  const { token } = req.cookies;
+  const { id } = req.params;
+
+  // Verify the JWT token
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) {
+      console.error('JWT verification error:', err);
+      return res.status(401).json({ error: 'Unauthorized: Invalid token' });
+    }
+
+    // Find the post by ID
+    const postDoc = await Post.findById(id);
+    if (!postDoc) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Check if the user is the author of the post
+    const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+    if (!isAuthor) {
+      return res.status(403).json({ error: 'Forbidden: You are not the author' });
+    }
+
+    // Delete the post
+    await Post.findByIdAndDelete(id);
+    res.json({ message: 'Post deleted successfully' });
+  });
+});
+
+app.get('/search', async (req, res) => {
+  const { query } = req.query; // Get the search query from the request
+  try {
+    const posts = await Post.find({
+      $or: [
+        { title: { $regex: query, $options: 'i' } }, // Case-insensitive search in title
+        { summary: { $regex: query, $options: 'i' } } // Case-insensitive search in summary
+      ]
+    }).populate('author', ['username']);
+    
+    res.json(posts);
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+const PORT = process.env.PORT || 4000; // Use the environment variable or default to 4000
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`); // Log the port number
+});

@@ -190,21 +190,77 @@ div.content p {
     margin: 20px 0;
     color: #444;
 }
+
+
 div.edit-row {
     text-align: center;
     margin-bottom: 20px;
-}
-div.post-page a.edit-btn {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Space between the buttons */
+  }
+  
+  div.post-page a.edit-btn,
+  .delete-btn {
+    width: 100px; /* Fixed width for uniform size */
+    text-align: center; /* Ensure text is centered */
+    display: inline-flex; /* Align items horizontally */
+    align-items: center; /* Align text vertically */
+    justify-content: center; /* Center content */
+  }
+  
+  div.post-page a.edit-btn {
     background-color: #333;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 0; /* Adjust padding for consistent height */
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s;
-}
-div.post-page a.edit-btn:hover {
-    background-color: #444;
-}
+  }
+  
+  div.post-page a.edit-btn:hover {
+    background-color: #444; /* Slightly darker gray on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+  }
+  
+  .delete-btn {
+    margin-left: 0; /* Remove extra margin */
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0; /* Adjust padding for consistent height */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+  }
+  
+  .delete-btn:focus {
+    outline: none;
+  }
+  
+  
+  .search-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 20px; /* Space below the search input */
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px; /* Limit the width */
+  }
+  
+  input[type="text"]:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
