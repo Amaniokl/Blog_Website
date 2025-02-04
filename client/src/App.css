@@ -8,12 +8,12 @@ a {
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 body {
-    font-family: 'Inter', sans-serif; /* Clean, modern typography */
+    font-family: 'Inter', sans-serif;
     color: #333;
-    background-color: #f5f5f7; /* Subtle off-white background */
+    background-color: #f5f5f7;
     line-height: 1.7;
 }
 img {
@@ -29,13 +29,13 @@ main {
 header {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
     align-items: center;
+    margin: 20px 0;
 }
 header a.logo {
     font-weight: bold;
-    font-size: 2.5rem; /* Increased font size for "My Blog" */
-    color: #007acc; /* Accent color */
+    font-size: 2.5rem;
+    color: #007acc;
 }
 header nav {
     display: flex;
@@ -46,7 +46,7 @@ header nav a {
     color: #555;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 header nav a:hover {
     background-color: #007acc;
@@ -66,17 +66,15 @@ div.post {
 }
 @media screen and (min-width: 700px) {
     div.post {
-        grid-template-columns: 0.8fr 1.2fr; /* Original two-column design inside individual posts */
+        grid-template-columns: 0.8fr 1.2fr;
     }
 }
 div.post div.texts h2 {
-    margin: 0;
     font-size: 1.6rem;
     font-weight: bold;
     color: #222;
 }
 div.post div.texts a {
-    text-decoration: none;
     color: inherit;
 }
 div.post p.info {
@@ -101,8 +99,6 @@ div.post p.summary {
     line-height: 1.5;
     color: #555;
 }
-
-/* Author Avatars */
 div.post p.info img {
     width: 32px;
     height: 32px;
@@ -112,68 +108,65 @@ div.post p.info img {
 
 /* Form Design */
 form.login, form.register {
-    max-width: 600px; /* Increased width */
+    max-width: 600px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 30px; /* Increased padding */
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 input {
-    display: block;
-    margin-bottom: 15px;
     width: 100%;
-    padding: 15px; /* Increased padding for inputs */
+    padding: 15px;
+    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fff;
-    font-size: 1.2rem; /* Increased font size */
+    font-size: 1.2rem;
     color: #333;
+    background-color: #fff;
 }
 input:focus {
     border-color: #007acc;
-    outline: none;
     background-color: #f0f8ff;
+    outline: none;
 }
 button {
-    cursor: pointer;
     width: 100%;
-    display: block;
-    background-color: #007acc;
+    padding: 15px;
     border: none;
-    color: #fff;
     border-radius: 5px;
-    padding: 15px; /* Increased padding for buttons */
-    font-size: 1.2rem; /* Larger button text */
-    transition: background-color 0.3s;
+    background-color: #007acc;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 button:hover {
     background-color: #005fa3;
 }
-form.login h1, form.register h1 {
+form h1 {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 2rem; /* Larger form title */
+    font-size: 2rem;
     color: #222;
 }
 
 /* Post Page Design */
 div.post-page div.image {
     max-height: 300px;
-    display: flex;
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 20px;
 }
 div.post-page h1 {
     text-align: center;
-    font-size: 2.5rem; /* Larger post page title */
+    font-size: 2.5rem;
     color: #222;
     margin: 20px 0;
 }
 div.post-page time {
-    text-align: center;
     display: block;
+    text-align: center;
     font-size: 0.9rem;
     color: #aaa;
     margin: 10px 0;
@@ -191,76 +184,58 @@ div.content p {
     color: #444;
 }
 
-
+/* Edit/Delete Buttons */
 div.edit-row {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 20px;
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center buttons horizontally */
-    gap: 10px; /* Space between the buttons */
-  }
-  
-  div.post-page a.edit-btn,
-  .delete-btn {
-    width: 100px; /* Fixed width for uniform size */
-    text-align: center; /* Ensure text is centered */
-    display: inline-flex; /* Align items horizontally */
-    align-items: center; /* Align text vertically */
-    justify-content: center; /* Center content */
-  }
-  
-  div.post-page a.edit-btn {
+}
+.edit-btn, .delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.edit-btn {
     background-color: #333;
     color: #fff;
-    padding: 10px 0; /* Adjust padding for consistent height */
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
-  
-  div.post-page a.edit-btn:hover {
-    background-color: #444; /* Slightly darker gray on hover */
-    transform: translateY(-1px); /* Slight lift effect */
-  }
-  
-  .delete-btn {
-    margin-left: 0; /* Remove extra margin */
+}
+.edit-btn:hover {
+    background-color: #444;
+    transform: translateY(-1px);
+}
+.delete-btn {
     background-color: #e74c3c;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 10px 0; /* Adjust padding for consistent height */
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-  
-  .delete-btn:hover {
+}
+.delete-btn:hover {
     background-color: #c0392b;
     transform: translateY(-1px);
-  }
-  
-  .delete-btn:focus {
-    outline: none;
-  }
-  
-  
-  .search-container {
+}
+
+/* Search Container */
+.search-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    margin-bottom: 20px; /* Space below the search input */
-  }
-  
-  input[type="text"] {
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.search-container input[type="text"] {
+    width: 100%;
+    max-width: 400px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    width: 100%;
-    max-width: 400px; /* Limit the width */
-  }
-  
-  input[type="text"]:focus {
-    border-color: #007bff; /* Change border color on focus */
-    outline: none; /* Remove default outline */
-  }
+}
+.search-container input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
